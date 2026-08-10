@@ -134,11 +134,11 @@ button {
 .masthead__tabs {
   display: flex;
   justify-content: center;
-  gap: 2.25rem;
+  gap: 3rem;       /* was 2.25rem */
   padding: 0 4rem;
   overflow-x: auto;
-  scrollbar-width: none;        /* Firefox */
-  -ms-overflow-style: none;     /* old Edge/IE */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .masthead__tabs::-webkit-scrollbar {
@@ -657,10 +657,13 @@ button {
     display: flex;
   }
 
+  @media (max-width: 780px) {
   .masthead__tabs {
-    gap: 1.5rem;
+    justify-content: flex-start;
+    gap: 2.1rem;      /* was 1.5rem */
     padding: 0 1.25rem;
   }
+}
 
   .sidebar {
     position: fixed;
