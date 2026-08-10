@@ -660,7 +660,7 @@ button {
   @media (max-width: 780px) {
   .masthead__tabs {
     justify-content: flex-start;
-    gap: 2.1rem;      /* was 1.5rem */
+    gap: 2.5rem;      /* was 1.5rem */
     padding: 0 1.25rem;
   }
 }
