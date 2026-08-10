@@ -1,121 +1,327 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
+const NAV_ITEMS = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'getting-started', label: 'Getting started' },
+  { id: 'features', label: 'Features' },
+  { id: 'courses', label: 'Courses' },
+  { id: 'commands', label: 'Commands' },
+  { id: 'faq', label: 'FAQ' },
+]
+
+const TOP_TABS = ['Overview', 'Products', 'Subscriptions', 'Contribute']
+
+const TRANSCRIPT = [
+  { from: 'user', text: 'quiz me on beta blockers' },
+  { from: 'bot', text: 'Pulling 10 PHARM questions on beta blockers. First one coming up \u2014 reply with A, B, C or D.' },
+  { from: 'user', text: 'pq cpath 2023' },
+  { from: 'bot', text: 'Found 34 past questions from Chemical Pathology, 2023 sitting. Want them by topic or in exam order?' },
+]
+
+const GETTING_STARTED = [
+  {
+    step: '01',
+    title: 'Save the number',
+    body: 'Add the Study Buddy WhatsApp number to your contacts. No app store, no install \u2014 it opens straight in WhatsApp.',
+  },
+  {
+    step: '02',
+    title: 'Say hi',
+    body: 'Send any message to start. Study Buddy walks you through registration: email, a one-time PIN, then your school and year.',
+  },
+  {
+    step: '03',
+    title: 'Pick your courses',
+    body: 'Choose from Pharmacology, Chemical Pathology, Morbid Anatomy, Haematology and Microbiology. You can add or switch later.',
+  },
+  {
+    step: '04',
+    title: 'Start studying',
+    body: 'Ask a question, request a quiz, or pull past questions. Study Buddy replies in the same chat, every time.',
+  },
+]
+
+const FEATURES = [
+  {
+    name: 'Q&A',
+    body: 'Ask anything from your syllabus in plain language and get a straight, exam-focused answer \u2014 with follow-up questions kept in context.',
+    example: 'explain the mechanism of warfarin',
+  },
+  {
+    name: 'Quiz mode',
+    body: 'Timed or untimed multiple-choice sets, generated on demand for a topic, a course, or a mix of everything you\u2019re weak on.',
+    example: 'quiz me on renal physiology, 20 questions',
+  },
+  {
+    name: 'Flashcards',
+    body: 'Front-and-back cards built from your course material, sent as a deck you can flip through message by message.',
+    example: 'flashcards on acid-base disorders',
+  },
+  {
+    name: 'Past questions',
+    body: 'Search and bookmark past exam questions by course, year, or set, and revisit anything you\u2019ve saved.',
+    example: 'pq mobid 2022 set b',
+  },
+  {
+    name: 'Video summaries',
+    body: 'Drop in a YouTube lecture link and get a written summary with the key points, ready before the video would\u2019ve finished playing.',
+    example: 'summarize [youtube link]',
+  },
+]
+
+const COURSES = [
+  { code: 'PHARM', name: 'Pharmacology' },
+  { code: 'CPATH', name: 'Chemical Pathology' },
+  { code: 'MOBID', name: 'Morbid Anatomy' },
+  { code: 'HEMAT', name: 'Haematology' },
+  { code: 'MCB', name: 'Microbiology' },
+]
+
+const COMMANDS = [
+  { cmd: 'quiz me on <topic>', does: 'Starts a multiple-choice quiz on that topic' },
+  { cmd: 'flashcards <topic>', does: 'Builds a flashcard deck you can flip through' },
+  { cmd: 'pq <course> <year>', does: 'Retrieves past questions for a course and sitting' },
+  { cmd: 'bookmark', does: 'Saves the last question or card for later' },
+  { cmd: 'summarize <link>', does: 'Summarizes a YouTube lecture into key points' },
+  { cmd: 'switch course', does: 'Changes which course you\u2019re currently studying' },
+]
+
+const FAQS = [
+  {
+    q: 'Do I need to install anything?',
+    a: 'No. Study Buddy runs entirely inside WhatsApp \u2014 there\u2019s no separate app, login page, or download.',
+  },
+  {
+    q: 'Which courses does it cover right now?',
+    a: 'Pharmacology, Chemical Pathology, Morbid Anatomy, Haematology and Microbiology. "Pathology" on its own covers two of these, so Study Buddy will ask which one you mean.',
+  },
+  {
+    q: 'Where do the past questions come from?',
+    a: 'A shared bank built from real exam sittings, organised by course, year and set so you can search or bookmark exactly what you need.',
+  },
+  {
+    q: 'Can I pick up where I left off?',
+    a: 'Yes. Study Buddy keeps track of the course and topic you were on, so a follow-up question doesn\u2019t need repeated context.',
+  },
+  {
+    q: 'What if I get stuck or something looks wrong?',
+    a: 'Send "help" at any point in the chat, and a message will get routed to support.',
+  },
+]
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeSection, setActiveSection] = useState('overview')
+  const [navOpen, setNavOpen] = useState(false)
+  const [openFaq, setOpenFaq] = useState(0)
+  const [activeTab, setActiveTab] = useState('Overview')
+  const sectionRefs = useRef({})
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+    )
+
+    NAV_ITEMS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) {
+        sectionRefs.current[id] = el
+        observer.observe(el)
+      }
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleNavClick = () => setNavOpen(false)
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="app">
+      <header className="masthead">
+        <div className="masthead__row">
+          <span className="masthead__brand">
+            <span className="mark" aria-hidden="true" />
+            Study Buddy Documentation
+          </span>
+          <button
+            className="masthead__toggle"
+            aria-label={navOpen ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+
+        <nav className="masthead__tabs" aria-label="Product areas">
+          {TOP_TABS.map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              className={activeTab === tab ? 'active' : ''}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </nav>
+      </header>
+
+      <div className="app__body">
+        <aside className={`sidebar ${navOpen ? 'sidebar--open' : ''}`}>
+          <nav className="sidebar__nav" aria-label="Sections">
+            <p className="sidebar__nav-label">On this page</p>
+            <ul>
+              {NAV_ITEMS.map(({ id, label }) => (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className={activeSection === id ? 'active' : ''}
+                    onClick={handleNavClick}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="sidebar__meta">
+            <p>Runs entirely on WhatsApp.</p>
+            <p>Built for medical students, by the people who sat the same exams.</p>
+          </div>
+        </aside>
+
+        <main className="content">
+        <section id="overview" className="section section--hero">
+          <p className="eyebrow">Study Buddy \u2014 Documentation</p>
+          <h1>Your revision partner lives in WhatsApp.</h1>
+          <p className="lede">
+            No app to install, no dashboard to learn. Study Buddy answers questions,
+            runs quizzes, builds flashcards, and pulls past exam questions \u2014 all in
+            the same chat thread you already use every day.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+          <div className="transcript">
+            <div className="transcript__header">
+              <span>STUDY BUDDY \u2014 TRANSCRIPT</span>
+              <span>PHARM / CPATH</span>
+            </div>
+            <div className="transcript__body">
+              {TRANSCRIPT.map((m, i) => (
+                <div key={i} className={`bubble bubble--${m.from}`}>
+                  <span className="bubble__label">{m.from === 'user' ? 'You' : 'Study Buddy'}</span>
+                  <p>{m.text}</p>
+                </div>
+              ))}
+              <div className="cursor" aria-hidden="true" />
+            </div>
+          </div>
+        </section>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section id="getting-started" className="section">
+          <p className="eyebrow">Getting started</p>
+          <h2>Four messages to your first study session.</h2>
+          <div className="steps">
+            {GETTING_STARTED.map((s) => (
+              <div className="step" key={s.step}>
+                <span className="step__number">{s.step}</span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        <section id="features" className="section">
+          <p className="eyebrow">Features</p>
+          <h2>Everything you'd want from a study app, none of the app.</h2>
+          <div className="feature-grid">
+            {FEATURES.map((f) => (
+              <article className="feature-card" key={f.name}>
+                <h3>{f.name}</h3>
+                <p>{f.body}</p>
+                <code>{f.example}</code>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="courses" className="section">
+          <p className="eyebrow">Courses</p>
+          <h2>Currently covering five courses.</h2>
+          <p className="section-note">
+            "Pathology" spans two of these \u2014 Chemical Pathology and Morbid Anatomy \u2014
+            so Study Buddy will ask which one you mean if you don't specify.
+          </p>
+          <div className="course-grid">
+            {COURSES.map((c) => (
+              <div className="course-chip" key={c.code}>
+                <span className="course-chip__code">{c.code}</span>
+                <span className="course-chip__name">{c.name}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="commands" className="section">
+          <p className="eyebrow">Commands</p>
+          <h2>A quick reference.</h2>
+          <p className="section-note">
+            You don't need exact phrasing \u2014 Study Buddy understands natural language.
+            These are just the shortest way to ask.
+          </p>
+          <div className="command-table">
+            {COMMANDS.map((c) => (
+              <div className="command-row" key={c.cmd}>
+                <code>{c.cmd}</code>
+                <span>{c.does}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="faq" className="section">
+          <p className="eyebrow">FAQ</p>
+          <h2>Common questions.</h2>
+          <div className="faq">
+            {FAQS.map((f, i) => {
+              const isOpen = openFaq === i
+              return (
+                <div className={`faq-item ${isOpen ? 'faq-item--open' : ''}`} key={f.q}>
+                  <button
+                    className="faq-item__question"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenFaq(isOpen ? -1 : i)}
+                  >
+                    {f.q}
+                    <span className="faq-item__icon" aria-hidden="true" />
+                  </button>
+                  {isOpen && <p className="faq-item__answer">{f.a}</p>}
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
+          <footer className="footer">
+            <p>Stuck on something these docs don't cover?</p>
+            <p>Send "help" to Study Buddy on WhatsApp and it'll route you to support.</p>
+          </footer>
+        </main>
+      </div>
+    </div>
   )
 }
 
