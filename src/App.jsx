@@ -4,6 +4,8 @@ import Overview from './pages/overview/overview'
 import Products from './pages/products/products'
 import Subscriptions from './pages/subscriptions/subscriptions'
 import Contribute from './pages/contribute/contribute'
+import { useState } from 'react'
+
 
 const TOP_TABS = [
   { label: 'Overview', path: '/' },
@@ -13,6 +15,8 @@ const TOP_TABS = [
 ]
 
 function Layout() {
+  const [navOpen, setNavOpen] = useState(false)
+
   return (
     <div className="app">
       <header className="masthead">
@@ -21,6 +25,16 @@ function Layout() {
             <span className="mark" aria-hidden="true" />
             Study Buddy Documentation
           </span>
+          <button
+            className="masthead__toggle"
+            aria-label={navOpen ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
 
         <nav className="masthead__tabs" aria-label="Product areas">
@@ -38,7 +52,7 @@ function Layout() {
       </header>
 
       <div className="app__body">
-        <Outlet />
+        <Outlet context={{ navOpen, setNavOpen }} />
       </div>
     </div>
   )

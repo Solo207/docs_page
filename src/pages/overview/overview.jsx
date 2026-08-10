@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+
 
 const NAV_ITEMS = [
   { id: 'overview', label: 'Overview' },
@@ -61,10 +63,10 @@ const FAQS = [
 
 function Overview() {
   const [activeSection, setActiveSection] = useState('overview')
-  const [navOpen, setNavOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState(0)
+  const { navOpen, setNavOpen } = useOutletContext()
   const sectionRefs = useRef({})
-
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
