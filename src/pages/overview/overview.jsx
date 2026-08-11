@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
-
+import AnchorSidebar from '../../components/AnchorSidebar/AnchorSidebar'
+import PageHeader from '../../components/PageHeader/PageHeader'
+import './overview.css'
+export const TAB = { label: 'Overview', path: '/' }
 
 const NAV_ITEMS = [
   { id: 'overview', label: 'Overview' },
@@ -58,15 +61,12 @@ const FAQS = [
   { q: 'What if I get stuck or something looks wrong?', a: 'Send "help" at any point in the chat, and a message will get routed to support.' },
 ]
 
-// ... TRANSCRIPT, GETTING_STARTED, FEATURES, COURSES, COMMANDS, FAQS
-// all copy over unchanged from your old App.jsx
-
 function Overview() {
   const [activeSection, setActiveSection] = useState('overview')
   const [openFaq, setOpenFaq] = useState(0)
   const { navOpen, setNavOpen } = useOutletContext()
   const sectionRefs = useRef({})
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -90,47 +90,28 @@ function Overview() {
     return () => observer.disconnect()
   }, [])
 
-  const handleNavClick = () => setNavOpen(false)
+  const handleNavClick = () => setNavOpen(false) 
 
   return (
     <>
-      <aside className={`sidebar ${navOpen ? 'sidebar--open' : ''}`}>
-          <nav className="sidebar__nav" aria-label="Sections">
-            <p className="sidebar__nav-label">On this page</p>
-            <ul>
-              {NAV_ITEMS.map(({ id, label }) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    className={activeSection === id ? 'active' : ''}
-                    onClick={handleNavClick}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="sidebar__meta">
-            <p>Runs entirely on WhatsApp.</p>
-            <p>Built for medical students, by the people who sat the same exams.</p>
-          </div>
-        </aside>
+      <AnchorSidebar items={NAV_ITEMS} activeId={activeSection} open={navOpen} onLinkClick={handleNavClick}>
+        <p>Runs entirely on WhatsApp.</p>
+        <p>Built for medical students, by the people who sat the same exams.</p>
+      </AnchorSidebar>
 
       <main className="content">
         <section id="overview" className="section section--hero">
-          <p className="eyebrow">Study Buddy \u2014 Documentation</p>
-          <h1>Your revision partner lives in WhatsApp.</h1>
-          <p className="lede">
-            No app to install, no dashboard to learn. Study Buddy answers questions,
-            runs quizzes, builds flashcards, and pulls past exam questions \u2014 all in
-            the same chat thread you already use every day.
-          </p>
+          <PageHeader
+            level={1}
+            hero
+            eyebrow="Study Buddy — Documentation"
+            title="Your revision partner lives in WhatsApp."
+            lede="No app to install, no dashboard to learn. Study Buddy answers questions, runs quizzes, builds flashcards, and pulls past exam questions — all in the same chat thread you already use every day."
+          />
 
           <div className="transcript">
             <div className="transcript__header">
-              <span>STUDY BUDDY \u2014 TRANSCRIPT</span>
+              <span>STUDY BUDDY — TRANSCRIPT</span>
               <span>PHARM / CPATH</span>
             </div>
             <div className="transcript__body">
@@ -146,8 +127,7 @@ function Overview() {
         </section>
 
         <section id="getting-started" className="section">
-          <p className="eyebrow">Getting started</p>
-          <h2>Four messages to your first study session.</h2>
+          <PageHeader eyebrow="Getting started" title="Four messages to your first study session." />
           <div className="steps">
             {GETTING_STARTED.map((s) => (
               <div className="step" key={s.step}>
@@ -162,8 +142,7 @@ function Overview() {
         </section>
 
         <section id="features" className="section">
-          <p className="eyebrow">Features</p>
-          <h2>Everything you'd want from a study app, none of the app.</h2>
+          <PageHeader eyebrow="Features" title="Everything you'd want from a study app, none of the app." />
           <div className="feature-grid">
             {FEATURES.map((f) => (
               <article className="feature-card" key={f.name}>
@@ -176,11 +155,9 @@ function Overview() {
         </section>
 
         <section id="courses" className="section">
-          <p className="eyebrow">Courses</p>
-          <h2>Currently covering five courses.</h2>
+          <PageHeader eyebrow="Courses" title="Currently covering five courses." />
           <p className="section-note">
-            "Pathology" spans two of these \u2014 Chemical Pathology and Morbid Anatomy \u2014
-            so Study Buddy will ask which one you mean if you don't specify.
+            "Pathology" spans two of these — Chemical Pathology and Morbid Anatomy — so Study Buddy will ask which one you mean if you don't specify.
           </p>
           <div className="course-grid">
             {COURSES.map((c) => (
@@ -193,11 +170,9 @@ function Overview() {
         </section>
 
         <section id="commands" className="section">
-          <p className="eyebrow">Commands</p>
-          <h2>A quick reference.</h2>
+          <PageHeader eyebrow="Commands" title="A quick reference." />
           <p className="section-note">
-            You don't need exact phrasing \u2014 Study Buddy understands natural language.
-            These are just the shortest way to ask.
+            You don't need exact phrasing — Study Buddy understands natural language. These are just the shortest way to ask.
           </p>
           <div className="command-table">
             {COMMANDS.map((c) => (
@@ -210,8 +185,7 @@ function Overview() {
         </section>
 
         <section id="faq" className="section">
-          <p className="eyebrow">FAQ</p>
-          <h2>Common questions.</h2>
+          <PageHeader eyebrow="FAQ" title="Common questions." />
           <div className="faq">
             {FAQS.map((f, i) => {
               const isOpen = openFaq === i
@@ -232,11 +206,11 @@ function Overview() {
           </div>
         </section>
 
-          <footer className="footer">
-            <p>Stuck on something these docs don't cover?</p>
-            <p>Send "help" to Study Buddy on WhatsApp and it'll route you to support.</p>
-          </footer>
-        </main>
+        <footer className="footer">
+          <p>Stuck on something these docs don't cover?</p>
+          <p>Send "help" to Study Buddy on WhatsApp and it'll route you to support.</p>
+        </footer>
+      </main>
     </>
   )
 }
