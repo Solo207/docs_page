@@ -109,3 +109,30 @@
     transform: translateX(0);
   }
 }
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: var(--masthead-h);
+    left: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: calc(100vh - var(--masthead-h));
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    z-index: 40;
+    border-right: none;
+    padding: 2rem 1.5rem;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+  }
+}
+
+.app__backdrop {
+  background: rgba(0, 0, 0, 0.35); /* darker, so it works even where blur silently fails */
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
