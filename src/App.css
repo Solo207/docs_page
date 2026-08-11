@@ -33,8 +33,6 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 5600px;
-  font-weight: 500; /* or 450, 500 — whatever weight you want as the baseline */
 }
 
 h1, h2, h3 {
