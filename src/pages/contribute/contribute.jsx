@@ -1,22 +1,28 @@
-// pages/contribute/contribute.jsx
-import { useOutletContext } from 'react-router-dom'
-import EmptySidebar from '../../components/EmptySidebar/EmptySidebar'
+import { Outlet, useOutlet } from 'react-router-dom'
+import { route as supRoute } from './support/support.jsx'
 
 function Contribute() {
-  const { navOpen } = useOutletContext()
+  const outlet = useOutlet()
 
   return (
-    <>
-      <EmptySidebar open={navOpen} label="Contribute" />
-      <main className="content">
-        <section className="section">
-          <h2>Contribute page — dummy text</h2>
-          <p>If you can read this at the URL /contribute, routing is working.</p>
-        </section>
-      </main>
-    </>
+    <div>
+      {!outlet && (
+      <>
+        <h1>Contribute</h1>
+        <p>Pick a contribute from the menu.</p>
+      </>
+      )}
+      <Outlet />
+    </div>
   )
 }
 
-export const TAB = { label: 'Contribute', path: '/contribute', children: [] }
-export default Contribute
+const children = [supRoute] 
+
+export const route = {
+  path: 'contribute',
+  label: 'Contribute',
+  element: <Contribute />,
+  handle: { navItems: children }, 
+  children,
+}

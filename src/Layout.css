@@ -1,0 +1,203 @@
+.layout__body {
+  display: flex;
+}
+
+.layout__content {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+/* Header's button is hidden by default — desktop shows the menu permanently, nothing to toggle */
+.header__toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .header__toggle {
+    display: block;
+  }
+
+    .left-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    max-width: 80vw;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    z-index: 55;
+    background: white;
+  }
+
+  .left-menu--open {
+    transform: translateX(0);
+  }
+
+}
+
+.left-menu__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-menu__arrow {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+.left-menu__toggle.open .left-menu__arrow {
+  transform: rotate(-135deg);
+}
+
+.left-menu__children {
+  padding-left: 1rem;
+}
+
+.left-menu__label {
+  flex: 1;
+}
+
+.left-menu__arrow-btn {
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.left-menu__arrow {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+.left-menu__toggle.open .left-menu__arrow {
+  transform: rotate(-135deg);
+}
+
+.app__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 52;
+}
+
+.layout {
+  position: relative;
+}
+
+.onpage-float {
+  display: none;
+}
+
+
+  @media (max-width: 900px) {
+  .onpage-float {
+    display: block;
+  }
+}
+
+.onpage-float__toggle {
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  z-index: 58;
+}
+
+.onpage-float__panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 260px;
+  max-width: 80vw;
+  background: white;
+  padding: 4.5rem 1.25rem 1.5rem;
+  overflow-y: auto;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.08);
+  transform: translateX(100%);
+  transition: transform 0.2s ease;
+  z-index: 55;
+}
+
+.onpage-float__panel--open {
+  transform: translateX(0);
+}
+
+.on-page-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.on-page-nav a.active {
+  font-weight: 600;
+}
+
+.right-panel {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 1.5rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .right-panel {
+    display: none;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: white;
+}
+
+@media (max-width: 900px) {
+  .onpage-float {
+    display: block;
+    position: fixed;
+    top: 4.5rem;
+    right: 1rem;
+    z-index: 45;
+  }
+}
+
+.right-panel {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 4.5rem;
+  align-self: flex-start;
+  max-height: calc(100vh - 4.5rem);
+  overflow-y: auto;
+}

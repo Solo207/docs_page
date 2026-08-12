@@ -1,54 +1,27 @@
-import { useState } from 'react'
-import { Routes, Route, Outlet } from 'react-router-dom'
-import Masthead from './components/Masthead/Masthead'
-import Overview, { TAB as overviewTab } from './pages/overview/overview'
-import ProductsLayout, { TAB as productsTab } from './pages/products/productsLayout'
-import ProductsHome from './pages/products/productsHome'
-import ProductsTopic from './pages/products/productsTopic'
-import { SECTIONS } from './pages/products/productsData'
-import Subscriptions, { TAB as subscriptionsTab } from './pages/subscriptions/subscriptions'
-import Contribute, { TAB as contributeTab } from './pages/contribute/contribute'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Layout from './Layout.jsx'
+import { route as overviewRoute } from './pages/overview/overview.jsx'
+import { route as productsRoute } from './pages/products/products.jsx'
+import { route as subscriptionsRoute } from './pages/subscriptions/subscriptions.jsx'
+import { route as contributeRoute } from './pages/contribute/contribute.jsx'
 
-const TOP_TABS = [overviewTab, productsTab, subscriptionsTab, contributeTab]
+const topLevel = [overviewRoute, productsRoute, subscriptionsRoute, contributeRoute]
 
-function Layout() {
-  const [navOpen, setNavOpen] = useState(false)
-
-  return (
-    <div className="app">
-      <Masthead navOpen={navOpen} onToggleNav={() => setNavOpen((open) => !open)} tabs={TOP_TABS} />
-      <div className="app__body">
-        <Outlet context={{ navOpen, setNavOpen }} />
-        {navOpen && (
-          <div className="app__backdrop" onClick={() => setNavOpen(false)} aria-hidden="true" />
-        )}
-      </div>
-    </div>
-  )
-}
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout topLevel={topLevel} />,
+    children: [
+      { index: true, element: overviewRoute.element, handle: overviewRoute.handle },
+      productsRoute,
+      subscriptionsRoute,
+      contributeRoute,
+    ],
+  },
+])
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Overview />} />
-
-        <Route path="products" element={<ProductsLayout />}>
-          <Route index element={<ProductsHome />} />
-          {SECTIONS.map((sec) => (
-            <Route key={sec.slug} path={sec.slug} element={<ProductsTopic />} />
-          ))}
-          {SECTIONS.map((sec) => (
-            <Route key={`${sec.slug}/:topic`} path={`${sec.slug}/:topic`} element={<ProductsTopic />} />
-          ))}
-        </Route>
-
-        <Route path="subscriptions" element={<Subscriptions />} />
-        <Route path="contribute" element={<Contribute />} />
-      </Route>
-    </Routes>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App

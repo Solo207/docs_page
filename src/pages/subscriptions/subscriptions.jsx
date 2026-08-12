@@ -1,22 +1,28 @@
-// pages/subscriptions/subscriptions.jsx
-import { useOutletContext } from 'react-router-dom'
-import EmptySidebar from '../../components/EmptySidebar/EmptySidebar'
+import { Outlet, useOutlet } from 'react-router-dom'
+import { route as subRoute } from './subscribe/subscribe.jsx'
 
 function Subscriptions() {
-  const { navOpen } = useOutletContext()
+  const outlet = useOutlet()
 
   return (
-    <>
-      <EmptySidebar open={navOpen} label="Subscriptions" />
-      <main className="content">
-        <section className="section">
-          <h2>Subscriptions page — dummy text</h2>
-          <p>If you can read this at the URL /subscriptions, routing is working.</p>
-        </section>
-      </main>
-    </>
+    <div>
+      {!outlet && (
+      <>
+        <h1>Contribute</h1>
+        <p>Pick a sub from the menu.</p>
+      </>
+      )}
+      <Outlet />
+    </div>
   )
 }
 
-export const TAB = { label: 'Subscriptions', path: '/subscriptions', children: [] }
-export default Subscriptions
+const children = [subRoute] 
+
+export const route = {
+  path: 'subscriptions',
+  label: 'Subscriptions',
+  element: <Subscriptions />,
+  handle: { navItems: children }, 
+  children,
+}
