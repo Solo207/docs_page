@@ -19,9 +19,12 @@ function Layout({ topLevel }) {
 
   const onPageMatch = [...matches].reverse().find((m) => m.handle?.onPageItems)
   const onPageItems = onPageMatch?.handle?.onPageItems ?? []
-
-  // Same "overflow only" rule for both desktop RightPanel and mobile OnPageDropdown
   const rightItems = navItems.length > 0 ? onPageItems : []
+
+  const closeAll = () => {
+    setMenuOpen(false)
+    setOnPageOpen(false)
+  }
 
   return (
     <div className="layout">
@@ -36,6 +39,7 @@ function Layout({ topLevel }) {
         items={rightItems}
         open={onPageOpen}
         onToggle={() => setOnPageOpen((v) => !v)}
+        onLinkClick={() => setOnPageOpen(false)}
       />
 
       <div className="layout__body">
@@ -55,8 +59,8 @@ function Layout({ topLevel }) {
 
       <Footer />
 
-      {menuOpen && (
-        <div className="app__backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />
+      {(menuOpen || onPageOpen) && (
+        <div className="app__backdrop" onClick={closeAll} aria-hidden="true" />
       )}
     </div>
   )

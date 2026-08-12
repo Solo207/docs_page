@@ -80,7 +80,7 @@ function LeftMenu({ navItems, onPageItems, basePath, currentPath, open, onLinkCl
   if (onPageItems.length > 0) {
   return (
     <aside className={`left-menu left-menu--onpage ${open ? 'left-menu--open' : ''}`}>
-      <OnPageNav items={onPageItems} />
+      <OnPageNav items={onPageItems} onLinkClick={onLinkClick} />
     </aside>
   )
 }

@@ -1,6 +1,6 @@
 import OnPageNav from './OnPageNav.jsx'
 
-function OnPageDropdown({ items, open, onToggle }) {
+function OnPageDropdown({ items, open, onToggle, onLinkClick }) {
   if (items.length === 0) return null
 
   return (
@@ -23,11 +23,13 @@ function OnPageDropdown({ items, open, onToggle }) {
       </button>
 
       <div className={`onpage-float__panel ${open ? 'onpage-float__panel--open' : ''}`}>
-        <OnPageNav items={items} />
+        <OnPageNav items={items} onLinkClick={onLinkClick} />
       </div>
     </div>
   )
 }
 
 export default OnPageDropdown
+
+
 

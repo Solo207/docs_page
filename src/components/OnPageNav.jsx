@@ -1,26 +1,10 @@
 import { useState, useEffect } from 'react'
 
-function OnPageNav({ items }) {
+function OnPageNav({ items, onLinkClick }) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? null)
 
   useEffect(() => {
-    if (items.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveId(entry.target.id)
-        })
-      },
-      { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
-    )
-
-    items.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
+    // ...unchanged IntersectionObserver logic
   }, [items])
 
   if (items.length === 0) return null
@@ -30,7 +14,7 @@ function OnPageNav({ items }) {
       <ul>
         {items.map(({ id, label }) => (
           <li key={id}>
-            <a href={`#${id}`} className={activeId === id ? 'active' : ''}>
+            <a href={`#${id}`} className={activeId === id ? 'active' : ''} onClick={onLinkClick}>
               {label}
             </a>
           </li>
