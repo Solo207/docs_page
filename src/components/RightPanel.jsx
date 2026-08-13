@@ -5,6 +5,7 @@ function RightPanel({ items }) {
 
   return (
     <aside className="right-panel">
+      <p className="right-panel__title">On this page</p>
       <OnPageNav items={items} />
     </aside>
   )

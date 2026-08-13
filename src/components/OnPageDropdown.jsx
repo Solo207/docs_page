@@ -23,6 +23,7 @@ function OnPageDropdown({ items, open, onToggle, onLinkClick }) {
       </button>
 
       <div className={`onpage-float__panel ${open ? 'onpage-float__panel--open' : ''}`}>
+        <p className="onpage-float__panel-title">On this page</p>
         <OnPageNav items={items} onLinkClick={onLinkClick} />
       </div>
     </div>
@@ -30,6 +31,3 @@ function OnPageDropdown({ items, open, onToggle, onLinkClick }) {
 }
 
 export default OnPageDropdown
-
-
-
