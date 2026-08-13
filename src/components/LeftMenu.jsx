@@ -17,7 +17,7 @@ function MenuItem({ item, parentPath, currentPath, onLinkClick }) {
   if (!hasChildren) {
   return (
     <li>
-      <NavLink to={fullPath} onClick={onLinkClick}>
+      <NavLink to={fullPath} end onClick={onLinkClick}>
         {item.label}
       </NavLink>
     </li>
@@ -27,7 +27,7 @@ function MenuItem({ item, parentPath, currentPath, onLinkClick }) {
   return (
   <li>
     <div className={`left-menu__toggle ${open ? 'open' : ''}`}>
-      <NavLink to={fullPath} onClick={onLinkClick} className="left-menu__label">
+      <NavLink to={fullPath} end onClick={onLinkClick} className="left-menu__label">
         {item.label}
       </NavLink>
       <button

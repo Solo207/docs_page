@@ -30,21 +30,23 @@ function Header({ topLevel, open, onToggle, hasLeftContent }) {
           <button className="header__toggle" onClick={onToggle} aria-expanded={open}>☰</button>
         )}
         <Link to="/" className="header__brand">
-          <img
-            src="/IMG-20260625-WA003.png"
-            alt="Study Buddy logo"
-            className="header__logo"
-          />
-          <span className="header__brand-text">Study Buddy Documentation</span>
+          <span className="header__logo-wrap">
+            <img
+              src="/IMG-20260625-WA003.png"
+              alt="Study Buddy logo"
+              className="header__logo"
+            />
+          </span>
+          <span className="header__brand-text">Docs</span>
         </Link>
+        <nav className="header__tabs">
+          {topLevel.map((item) => (
+            <NavLink key={item.label} to={item.path ? `/${item.path}` : '/'} end={!item.path}>
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
       </div>
-      <nav className="header__tabs">
-        {topLevel.map((item) => (
-          <NavLink key={item.label} to={item.path ? `/${item.path}` : '/'} end={!item.path}>
-            {item.label}
-          </NavLink>
-        ))}
-      </nav>
     </header>
   )
 }
