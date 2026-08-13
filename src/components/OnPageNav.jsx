@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 function OnPageNav({ items, onLinkClick }) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? null)
+  const clickedIdRef = useRef(null)
 
   useEffect(() => {
     if (items.length === 0) return
 
-    // Reset immediately when the page changes, so it doesn't
-    // keep showing whatever was active on the PREVIOUS page
-    setActiveId(items[0].id)
+    // Respect an existing hash on load (e.g. landing on #courses directly)
+    const hashId = window.location.hash.slice(1)
+    setActiveId(items.some((i) => i.id === hashId) ? hashId : items[0].id)
 
     const headings = items
       .map(({ id }) => document.getElementById(id))
@@ -18,6 +19,8 @@ function OnPageNav({ items, onLinkClick }) {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (clickedIdRef.current) return // a click just happened, don't fight it
+
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
@@ -30,9 +33,17 @@ function OnPageNav({ items, onLinkClick }) {
     )
 
     headings.forEach((heading) => observer.observe(heading))
-
     return () => observer.disconnect()
   }, [items])
+
+  const handleClick = (id) => {
+    setActiveId(id)
+    clickedIdRef.current = id
+    window.setTimeout(() => {
+      clickedIdRef.current = null
+    }, 700) // long enough for the jump/smooth-scroll to finish
+    onLinkClick?.()
+  }
 
   if (items.length === 0) return null
 
@@ -41,7 +52,11 @@ function OnPageNav({ items, onLinkClick }) {
       <ul>
         {items.map(({ id, label }) => (
           <li key={id}>
-            <a href={`#${id}`} className={activeId === id ? 'active' : ''} onClick={onLinkClick}>
+            <a
+              href={`#${id}`}
+              className={activeId === id ? 'active' : ''}
+              onClick={() => handleClick(id)}
+            >
               {label}
             </a>
           </li>
