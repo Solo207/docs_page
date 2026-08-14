@@ -1,0 +1,93 @@
+.doc-page {
+  max-width: 720px;
+}
+
+.doc-page h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.doc-page h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.doc-page p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--sb-text-muted);
+  margin: 0 0 1rem;
+}
+
+.doc-page ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: var(--sb-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.doc-page li {
+  margin-bottom: 0.35rem;
+}
+
+.doc-page li strong {
+  color: var(--sb-text);
+}
+
+/* Add to Overview.css */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.doc-page h1,
+.doc-page h2,
+.doc-page p,
+.doc-page ul {
+  animation: fadeInUp 0.45s ease both;
+}
+
+/* Stagger so things settle in one after another instead of all at once */
+.doc-page h1 { animation-delay: 0s; }
+.doc-page > p:nth-of-type(1) { animation-delay: 0.05s; }
+.doc-page > p:nth-of-type(2) { animation-delay: 0.1s; }
+.doc-page h2:nth-of-type(1) { animation-delay: 0.15s; }
+.doc-page h2:nth-of-type(1) + ul { animation-delay: 0.2s; }
+.doc-page h2:nth-of-type(2) { animation-delay: 0.25s; }
+.doc-page h2:nth-of-type(2) + p { animation-delay: 0.3s; }
+.doc-page h2:nth-of-type(3) { animation-delay: 0.35s; }
+.doc-page h2:nth-of-type(3) + p { animation-delay: 0.4s; }
+.doc-page h2:nth-of-type(3) ~ ul { animation-delay: 0.45s; }
+.doc-page h2:nth-of-type(3) ~ p:last-of-type { animation-delay: 0.5s; }
+
+/* Small hover polish on list items — mirrors the sidebar's hover language */
+.doc-page li {
+  padding: 0.15rem 0.4rem;
+  margin-left: -0.4rem;
+  border-radius: 4px;
+  transition: background 0.15s ease, padding-left 0.15s ease;
+}
+
+.doc-page li:hover {
+  background: var(--sb-surface-hover);
+  padding-left: 0.6rem;
+}
+
+/* Headings get a subtle underline sweep on hover, useful once they're clickable anchors */
+.doc-page h2 {
+  cursor: default;
+  transition: color 0.15s ease;
+}

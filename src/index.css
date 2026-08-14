@@ -11,9 +11,6 @@ body,
   min-height: 100vh;
 }
 
-body {
-  background: #172235;
-}
 
 #root {
   min-height: 100vh;
