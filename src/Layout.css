@@ -242,7 +242,7 @@
 }
 
 .left-menu li {
-  margin: 0.1rem 0;
+  margin: 0.35rem 0;
 }
 
 .left-menu a {
@@ -403,6 +403,10 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.on-page-nav li {
+  margin: 0.9rem 0;
 }
 
 .on-page-nav a {
