@@ -1,5 +1,5 @@
 import '../products.css'
-import AddImage from '../../../components/AddImage'
+import AddImage, { PageNav } from '../../../components/AddImage.jsx'
 
 function TypingQuestion() {
   return (
@@ -127,6 +127,12 @@ function TypingQuestion() {
           it for revision.
         </p>
       </div>
+
+      <PageNav
+        previous={{ to: '/products/ask', label: 'Ask and Explain' }}
+        next={{ to: '/products/ask/new-question', label: 'Editing the mapped topic' }}
+      />
+
     </div>
   )
 }

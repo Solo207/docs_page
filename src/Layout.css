@@ -533,3 +533,75 @@
   color: #6b7280;
   text-align: center;
 }
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem 0 0.5rem;
+}
+
+.page-nav__card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--border-color, #333);
+  border-radius: 8px;
+  padding: 0.85rem 1.1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+  flex: 0 1 calc(50% - 0.5rem);
+}
+
+.page-nav__card:only-child {
+  flex: 1 1 100%;
+}
+
+.page-nav__card--prev {
+  justify-content: flex-start;
+}
+
+.page-nav__card--next {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.page-nav__card:hover {
+  border-color: var(--accent-color, #2b6cb0);
+}
+
+.page-nav__card--prev {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.page-nav__card--next {
+  grid-column: 2;
+  justify-self: end;
+  text-align: right;
+}
+
+.page-nav__arrow {
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--text-secondary, #999);
+}
+
+.page-nav__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.page-nav__eyebrow {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #999);
+}
+
+.page-nav__label {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/*add image
