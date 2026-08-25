@@ -1,10 +1,12 @@
 import { Outlet, useOutlet } from 'react-router-dom'
 import { route as qaRoute } from './qa/qa.jsx'
+import {route as ytRoute } from './youTube/youtube.jsx'
+import {route as pqRoute} from './pastQuestion/pq.jsx'
 
-function ProductsOverview() {
+function ProductsOverview() { 
   const outlet = useOutlet()
 
-  return (
+  return ( 
     <div>
       {!outlet && (
         <>
@@ -17,7 +19,7 @@ function ProductsOverview() {
   )
 }
 
-const children = [qaRoute]
+const children = [qaRoute, ytRoute, pqRoute]
 
 export const route = {
   path: 'products',

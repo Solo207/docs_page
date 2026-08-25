@@ -1,7 +1,7 @@
  import { Outlet, useOutlet } from 'react-router-dom'
-import { route as book } from './bookmark.jsx'
+import { route as summary } from './summary.jsx'
 
-function PQOverview() { 
+function YTOverview() { 
   const outlet = useOutlet()
 
   return (
@@ -17,12 +17,12 @@ function PQOverview() {
   )
 }
 
-const children = [book]
+const children = [summary]
 
 export const route = {
-  path: 'past-question',
-  label: 'past-question',
-  element: <PQOverview />,
+  path: 'youtube',
+  label: 'youtube',
+  element: <YTOverview />,
   handle: { navItems: children },
   children,
 }

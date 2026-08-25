@@ -1,8 +1,10 @@
 import { Outlet, useOutlet } from 'react-router-dom'
 import { route as typingQuestionRoute } from './typingQuestion.jsx'
 import { route as editingQuestionRoute } from './editingQuestion.jsx'
+import {route as follow} from './follow.jsx'
+import { route as document } from './document.jsx'
 
-function QAOverview() {
+function QAOverview() { 
   const outlet = useOutlet()
 
   return (
@@ -18,11 +20,11 @@ function QAOverview() {
   )
 }
 
-const children = [typingQuestionRoute, editingQuestionRoute]
+const children = [typingQuestionRoute, editingQuestionRoute, follow, document]
 
 export const route = {
-  path: 'qa',
-  label: 'Q&A',
+  path: 'ask',
+  label: 'Ask and Explain',
   element: <QAOverview />,
   handle: { navItems: children },
   children,
