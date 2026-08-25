@@ -314,6 +314,23 @@
   color: var(--sb-text-muted);
 }
 
+.left-menu__section-label {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--accent-color, #2b6cb0);
+  border: 1px solid var(--accent-color, #2b6cb0);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+.left-menu__section-label:hover {
+  background: var(--surface-muted, #f4f4f5);
+}
+
 .left-menu__arrow-btn:hover,
 .left-menu__arrow-btn:focus-visible {
   background: transparent;

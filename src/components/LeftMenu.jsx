@@ -58,10 +58,15 @@ function MenuItem({ item, parentPath, currentPath, onLinkClick }) {
 )
 }
 
-function LeftMenu({ navItems, onPageItems, basePath, currentPath, open, onLinkClick }) {
+function LeftMenu({ sectionLabel, basePath, navItems, onPageItems, currentPath, open, onLinkClick }) {
   if (navItems.length > 0) {
     return (
       <aside className={`left-menu ${open ? 'left-menu--open' : ''}`}>
+        {sectionLabel && (
+          <NavLink to={basePath} end className="left-menu__section-label" onClick={onLinkClick}>
+            {sectionLabel}
+          </NavLink>
+        )}
         <ul>
           {navItems.map((item) => (
             <MenuItem
@@ -78,12 +83,12 @@ function LeftMenu({ navItems, onPageItems, basePath, currentPath, open, onLinkCl
   }
 
   if (onPageItems.length > 0) {
-  return (
-    <aside className={`left-menu left-menu--onpage ${open ? 'left-menu--open' : ''}`}>
-      <OnPageNav items={onPageItems} onLinkClick={onLinkClick} />
-    </aside>
-  )
-}
+    return (
+      <aside className={`left-menu left-menu--onpage ${open ? 'left-menu--open' : ''}`}>
+        <OnPageNav items={onPageItems} onLinkClick={onLinkClick} />
+      </aside>
+    )
+  }
 
   return null
 }

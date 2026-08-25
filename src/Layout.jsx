@@ -17,6 +17,10 @@ function Layout({ topLevel }) {
   const navItems = topLevelMatch?.handle?.navItems ?? []
   const basePath = topLevelMatch?.pathname ?? ''
 
+  // NEW: find the active top-level entry so we can show its label
+  // pinned above the accordion, e.g. "Products" when under /products/*
+  const activeSection = topLevel.find((t) => `/${t.path}` === basePath)
+
   const onPageMatch = [...matches].reverse().find((m) => m.handle?.onPageItems)
   const onPageItems = onPageMatch?.handle?.onPageItems ?? []
   const rightItems = navItems.length > 0 ? onPageItems : []
@@ -44,6 +48,7 @@ function Layout({ topLevel }) {
 
       <div className="layout__body">
         <LeftMenu
+          sectionLabel={navItems.length > 0 ? activeSection?.label : undefined}
           navItems={navItems}
           onPageItems={onPageItems}
           basePath={basePath}
