@@ -1,4 +1,5 @@
 import '../products.css'
+import AddImage from '../../../components/AddImage'
 
 function TypingQuestion() {
   return (
@@ -65,6 +66,13 @@ function TypingQuestion() {
           ATLAS answers immediately.
         </p>
       </div>
+
+      <AddImage
+  src="/IMG-20260625-WA003.png"
+  alt="ACE inhibitor mechanism of action"
+  caption="Fig 1. ACE inhibitor pathway"
+  height={200}
+/>
 
       <h2 id="tips">Tips</h2>
 

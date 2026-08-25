@@ -1,7 +1,8 @@
 /* products.css — shared by all Products sub-pages, one level above each page's folder */
 
 .product-page {
-  max-width: 720px;
+  /* max-width: 880px;       was 720px — a bit more breathing room */
+  margin-inline: auto;   /* centers it in the available flex space */
 }
 
 .product-page h1 {

@@ -29,6 +29,8 @@
 .layout__content {
   flex: 1;
   min-width: 0;
+  max-width: 880px;
+  margin-inline: auto;
   padding: 1.5rem;
 }
 
@@ -477,3 +479,30 @@
   font-weight: 600;
 }
 
+
+
+/* AddImage.css */
+.add-image {
+  margin: 24px 0;
+}
+
+.add-image__frame {
+  width: 100%;
+  overflow: auto;         /* scrolls internally, not the page */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.add-image__img {
+  display: block;
+  width: 100%;
+  height: auto;           /* keeps the image's natural aspect ratio */
+}
+
+.add-image__caption {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
