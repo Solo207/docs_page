@@ -5,6 +5,7 @@ import LeftMenu from './components/LeftMenu.jsx'
 import OnPageDropdown from './components/OnPageDropdown.jsx'
 import RightPanel from './components/RightPanel.jsx'
 import Footer from './components/Footer.jsx'
+import { ScrollToTop } from './components/AddImage.jsx'
 import './Layout.css'
 
 function Layout({ topLevel }) {
@@ -32,6 +33,7 @@ function Layout({ topLevel }) {
 
   return (
     <div className="layout">
+      <ScrollToTop />
       <Header
         topLevel={topLevel}
         open={menuOpen}

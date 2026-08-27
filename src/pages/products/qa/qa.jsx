@@ -31,6 +31,7 @@ export const route = {
 }*/
 
 import { Outlet, useOutlet } from 'react-router-dom'
+import { PageNav } from '../../../components/AddImage.jsx'
 import { route as typingQuestionRoute } from './typingQuestion.jsx'
 import { route as editingQuestionRoute } from './editingQuestion.jsx'
 import { route as follow } from './follow.jsx'
@@ -114,6 +115,12 @@ function QAOverview() {
         </div>
       )}
       <Outlet />
+     {!outlet && (
+     <PageNav
+        previous={{ to: '/products', label: 'Products page' }}
+        next={{ to: '/products/ask/typing-question', label: 'typing the question' }}
+      />
+      )}
     </div>
   )
 }

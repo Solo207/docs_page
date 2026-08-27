@@ -1,5 +1,5 @@
-// AddImage.jsx
-import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import './../Layout.css'
 
 function AddImage({ src, alt = '', caption, height = 320 }) {
@@ -36,6 +36,16 @@ export function PageNav({ previous, next }) {
       )}
     </nav>
   )
+}
+
+export function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return null
 }
 
 export default AddImage
