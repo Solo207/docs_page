@@ -26,10 +26,16 @@ export const route = {
 }*/
 
 import './overview.css'
+import { Outlet, useOutlet } from 'react-router-dom'
+import { PageNav } from '../../../src/components/AddImage.jsx'
 
 function Overview() {
+  const outlet = useOutlet()
+
   return (
     <div className="doc-page">
+      {!outlet && (
+      <div>
       <h1 id="getting-started">Getting started</h1>
       <p>
         ATLAS (also called "Study Buddy") is a WhatsApp-based AI study companion
@@ -67,9 +73,18 @@ function Overview() {
         about it generally, ATLAS will ask you to pick Chemical Pathology or
         Morbid Anatomy specifically.
       </p>
+      </div>
+    )}
+
+     <Outlet />
+         {!outlet && (
+         <PageNav
+            next={{ to: '/products', label: 'Products Page' }}
+          />
+          )}
     </div>
   )
-}
+} 
 
 const onPageItems = [
   { id: 'getting-started', label: 'Getting started' },

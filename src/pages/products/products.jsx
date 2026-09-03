@@ -29,6 +29,7 @@ export const route = {
   children,
 }*/
 
+import { PageNav } from '../../components/AddImage.jsx'
 import { Outlet, useOutlet } from 'react-router-dom'
 import { route as qaRoute } from './qa/qa.jsx'
 import { route as ytRoute } from './youTube/youtube.jsx'
@@ -129,6 +130,12 @@ function ProductsOverview() {
         </div>
       )}
       <Outlet />
+      {!outlet && (
+           <PageNav
+              previous={{ to: '/', label: 'Getting Started' }}
+              next={{ to: '/products/ask', label: 'Ask and Explain' }}
+            />
+      )}
     </div>
   )
 }
@@ -146,4 +153,4 @@ export const route = {
   element: <ProductsOverview />,
   handle: { navItems: children, onPageItems },
   children,
-}
+} 
