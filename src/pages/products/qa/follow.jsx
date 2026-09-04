@@ -3,7 +3,7 @@ function Follow() {
 }
 
 export const route = {
-  path: 'follow-up',
-  label: 'follow-up',
+  path: 'post-answer',
+  label: 'Post-answer commands',
   element: <Follow />,
 }  

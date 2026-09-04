@@ -9,7 +9,7 @@ function EditingQuestion() {
 }  */
 
 export const route = {
-  path: 'new-question',
-  label: 'New Question',
+  path: 'follow-up',
+  label: 'Follow up question',
   element: <EditingQuestion />,
 }  

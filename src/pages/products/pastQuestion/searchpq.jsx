@@ -3,7 +3,7 @@
 }
 
 export const route = {
-  path: 'search-bm',
-  label: 'View bookmarks',
+  path: 'search-pq',
+  label: 'Search past questions',
   element: <Book />,
-}  
+}

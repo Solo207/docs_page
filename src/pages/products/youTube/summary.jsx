@@ -3,7 +3,7 @@
 }
 
 export const route = {
-  path: 'summary',
-  label: 'summary',
+  path: 'video',
+  label: 'Paste video link',
   element: <Summary />,
 }  

@@ -1,5 +1,8 @@
- import { Outlet, useOutlet } from 'react-router-dom'
+import { Outlet, useOutlet } from 'react-router-dom'
 import { route as summary } from './summary.jsx'
+import { route as simplify} from './simplify.jsx'
+import { route as quiz} from './quiz.jsx'
+import { route as flashcard} from './flashcards.jsx'
 
 function YTOverview() { 
   const outlet = useOutlet()
@@ -17,11 +20,11 @@ function YTOverview() {
   )
 }
 
-const children = [summary]
+const children = [summary, simplify, quiz, flashcard]
 
 export const route = {
   path: 'youtube',
-  label: 'youtube',
+  label: 'YouTube Summary',
   element: <YTOverview />,
   handle: { navItems: children },
   children,

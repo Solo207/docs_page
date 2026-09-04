@@ -130,7 +130,7 @@ function TypingQuestion() {
 
       <PageNav
         previous={{ to: '/products/ask', label: 'Ask and Explain' }}
-        next={{ to: '/products/ask/new-question', label: 'Editing the mapped topic' }}
+        next={{ to: '/products/ask/follow-up', label: 'Follow up question' }}
       />
 
     </div>
@@ -147,8 +147,8 @@ const onPageItems = [
 ]
 
 export const route = {
-  path: 'typing-question',
-  label: 'Typing or pasting your question',
+  path: 'new-question',
+  label: 'New question',
   element: <TypingQuestion />,
   handle: { onPageItems },
 }

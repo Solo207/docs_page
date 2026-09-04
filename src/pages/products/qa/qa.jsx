@@ -35,6 +35,7 @@ import { PageNav } from '../../../components/AddImage.jsx'
 import { route as typingQuestionRoute } from './typingQuestion.jsx'
 import { route as editingQuestionRoute } from './editingQuestion.jsx'
 import { route as follow } from './follow.jsx'
+import { route as quiz } from './quiz.jsx'
 import { route as document } from './document.jsx'
 import './../products.css'
 
@@ -118,14 +119,14 @@ function QAOverview() {
      {!outlet && (
      <PageNav
         previous={{ to: '/products', label: 'Products page' }}
-        next={{ to: '/products/ask/typing-question', label: 'typing the question' }}
+        next={{ to: '/products/ask/new-question', label: 'typing the question' }}
       />
       )}
     </div>
   )
 }
 
-const children = [typingQuestionRoute, editingQuestionRoute, follow, document]
+const children = [typingQuestionRoute, editingQuestionRoute, follow, quiz, document]
 
 const onPageItems = [
   { id: 'whats-covered', label: "What's covered" },
