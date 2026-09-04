@@ -25,7 +25,7 @@ const children = [searchpq,navpq,book, navbm]
 
 export const route = {
   path: 'past-question',
-  label: 'Past question and Bookmark',
+  label: 'Past Question',
   element: <PQOverview />,
   handle: { navItems: children },
   children,
