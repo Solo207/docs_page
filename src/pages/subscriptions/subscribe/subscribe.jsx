@@ -1,5 +1,5 @@
 import { Outlet, useOutlet } from 'react-router-dom'
-import { route as wallet } from './wallet.jsx'
+//import { route as wallet } from './wallet.jsx'
 
 function SUBOverview() {
   const outlet = useOutlet()
@@ -16,8 +16,8 @@ function SUBOverview() {
     </div>
   )
 }
-
-const children = [wallet]
+//wallet
+const children = []
 
 export const route = {
   path: 'subscribe',
