@@ -147,8 +147,8 @@ const onPageItems = [
 ]
 
 export const route = {
-  path: 'new-question',
-  label: 'New question',
+  path: 'question',
+  label: 'Ask your first question',
   element: <TypingQuestion />,
   handle: { onPageItems },
 }

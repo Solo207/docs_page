@@ -119,7 +119,7 @@ function QAOverview() {
      {!outlet && (
      <PageNav
         previous={{ to: '/products', label: 'Products page' }}
-        next={{ to: '/products/ask/new-question', label: 'typing the question' }}
+        next={{ to: '/products/ask/question', label: 'Ask your first question' }}
       />
       )}
     </div>
