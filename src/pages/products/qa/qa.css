@@ -619,3 +619,120 @@
 /* Add more #quiz-page styles above this line */
 
 /* END SECTION: #quiz-page */
+
+
+
+/* flashcard.css — standalone stylesheet for flashcard.jsx (Generating flashcards).
+   Scoped under #flashcard-page so this file is fully independent of
+   qa.css, follow.css, quiz.css, and products.css — delete it and only
+   this page loses its styling. Add new rules above the END SECTION marker. */
+
+
+/* ============================================================ */
+/* SECTION: #flashcard-page                                      */
+/* Used only by flashcard.jsx.                                   */
+/* ============================================================ */
+
+#flashcard-page {
+  margin-inline: auto;
+}
+
+#flashcard-page h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  color: var(--sb-text);
+  scroll-margin-top: 5.5rem;
+}
+
+#flashcard-page .lede {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--sb-text-muted);
+  margin: 0 0 2rem;
+}
+
+#flashcard-page h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--sb-text);
+  margin: 2.5rem 0 0.75rem;
+  scroll-margin-top: 5.5rem;
+}
+
+#flashcard-page h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sb-text);
+  margin: 1.75rem 0 0.5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+#flashcard-page p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--sb-text-muted);
+  margin: 0 0 1rem;
+}
+
+#flashcard-page p strong {
+  color: var(--sb-text);
+}
+
+/* Example message block */
+#flashcard-page .example {
+  background: var(--sb-surface);
+  border: 1px solid var(--sb-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin: 1.5rem 0;
+}
+
+#flashcard-page .example__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sb-text-muted);
+  margin: 0 0 0.5rem;
+}
+
+#flashcard-page .example__msg {
+  font-size: 0.95rem;
+  color: var(--sb-text);
+  background: var(--sb-yellow-soft);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  margin: 0 0 0.5rem;
+  display: inline-block;
+}
+
+#flashcard-page .example__note {
+  font-size: 0.85rem;
+  color: var(--sb-text-muted);
+  margin: 0;
+}
+
+/* Callout */
+#flashcard-page .callout {
+  border-left: 3px solid var(--sb-yellow);
+  background: var(--sb-yellow-soft);
+  border-radius: 0 8px 8px 0;
+  padding: 0.85rem 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+#flashcard-page .callout__title {
+  font-weight: 700;
+  color: var(--sb-yellow-dark);
+  margin: 0 0 0.35rem !important;
+}
+
+#flashcard-page .callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Add more #flashcard-page styles above this line */
+
+/* END SECTION: #flashcard-page */
