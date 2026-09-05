@@ -1,0 +1,466 @@
+/* qa.css — one file, two fully independent sections.
+   Each page's root element carries a unique id, and every rule in
+   that page's section is scoped under that id. Delete a whole
+   section and only that page loses its styling — the other page
+   is untouched. Add new rules for a page inside its own section,
+   above the "END SECTION" marker. */
+
+
+/* ============================================================ */
+/* SECTION: #typing-question-page                                */
+/* Used only by typingQuestion.jsx.                               */
+/* ============================================================ */
+
+#typing-question-page {
+  /* max-width: 880px;       was 720px — a bit more breathing room */
+  margin-inline: auto;   /* centers it in the available flex space */
+}
+
+#typing-question-page h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  color: var(--sb-text);
+  scroll-margin-top: 5.5rem;
+}
+
+#typing-question-page .lede {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--sb-text-muted);
+  margin: 0 0 2rem;
+}
+
+#typing-question-page h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--sb-text);
+  margin: 2.5rem 0 0.75rem;
+  scroll-margin-top: 5.5rem;
+}
+
+#typing-question-page h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sb-text);
+  margin: 1.75rem 0 0.5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+#typing-question-page p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--sb-text-muted);
+  margin: 0 0 1rem;
+}
+
+#typing-question-page p strong {
+  color: var(--sb-text);
+}
+
+/* Numbered steps */
+#typing-question-page .steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+#typing-question-page .steps__item {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+#typing-question-page .steps__number {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sb-yellow-soft);
+  color: var(--sb-yellow);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#typing-question-page .steps__title {
+  font-weight: 600;
+  color: var(--sb-text);
+  margin: 0 0 0.2rem;
+}
+
+#typing-question-page .steps__item p {
+  margin: 0;
+}
+
+/* Example message block */
+#typing-question-page .example {
+  background: var(--sb-surface);
+  border: 1px solid var(--sb-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin: 1.5rem 0;
+}
+
+#typing-question-page .example__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sb-text-muted);
+  margin: 0 0 0.5rem;
+}
+
+#typing-question-page .example__msg {
+  font-size: 0.95rem;
+  color: var(--sb-text);
+  background: var(--sb-yellow-soft);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  margin: 0 0 0.5rem;
+  display: inline-block; 
+}
+
+#typing-question-page .example__note {
+  font-size: 0.85rem;
+  color: var(--sb-text-muted);
+  margin: 0;
+}
+
+/* Vague vs specific comparison */
+#typing-question-page .comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+#typing-question-page .comparison__col {
+  border: 1px solid var(--sb-border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+}
+
+#typing-question-page .comparison__col p {
+  margin: 0;
+}
+
+#typing-question-page .comparison__heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem !important;
+}
+
+#typing-question-page .comparison__heading--bad {
+  color: #f87171;
+}
+
+#typing-question-page .comparison__heading--good {
+  color: #4ade80;
+}
+
+@media (max-width: 640px) {
+  #typing-question-page .comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Callout */
+#typing-question-page .callout {
+  border-left: 3px solid var(--sb-yellow);
+  background: var(--sb-yellow-soft);
+  border-radius: 0 8px 8px 0;
+  padding: 0.85rem 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+#typing-question-page .callout__title {
+  font-weight: 700;
+  color: var(--sb-yellow-dark);
+  margin: 0 0 0.35rem !important;
+}
+
+#typing-question-page .callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Add more #typing-question-page styles above this line */
+
+/* END SECTION: #typing-question-page */
+
+
+/* ============================================================ */
+/* SECTION: #qa-overview-page                                    */
+/* Used only by qa.jsx (QAOverview).                              */
+/* ============================================================ */
+
+#qa-overview-page {
+  margin-bottom: 2rem;
+}
+
+#qa-overview-page .ask-overview__lede {
+  font-size: 1.1rem;
+  color: var(--text-secondary, #555);
+  line-height: 1.6;
+}
+
+#qa-overview-page .ask-overview__subtopics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+#qa-overview-page .ask-overview__subtopic {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color, #e5e5e5);
+  border-radius: 8px;
+}
+
+#qa-overview-page .ask-overview__subtopic-number {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-color, #2b6cb0);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+#qa-overview-page .ask-overview__subtopic-title {
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+#qa-overview-page .ask-overview__subtopic-desc {
+  margin: 0;
+  color: var(--text-secondary, #555);
+  font-size: 0.95rem;
+}
+
+#qa-overview-page .ask-overview__quick-actions {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#qa-overview-page .ask-overview__quick-actions li {
+  background: var(--surface-muted, #f4f4f5);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+/* Add more #qa-overview-page styles above this line */
+
+/* END SECTION: #qa-overview-page */
+
+
+
+/* follow.css — standalone stylesheet for follow.jsx (Following up on an answer).
+   Everything is scoped under #follow-up-page so this file is fully
+   independent of qa.css and products.css — delete it and only this
+   page loses its styling. Add new rules above the END SECTION marker. */
+
+
+/* ============================================================ */
+/* SECTION: #follow-up-page                                      */
+/* Used only by follow.jsx.                                      */
+/* ============================================================ */
+
+#follow-up-page {
+  margin-inline: auto;
+}
+
+#follow-up-page h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  color: var(--sb-text);
+  scroll-margin-top: 5.5rem;
+}
+
+#follow-up-page .lede {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--sb-text-muted);
+  margin: 0 0 2rem;
+}
+
+#follow-up-page h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--sb-text);
+  margin: 2.5rem 0 0.75rem;
+  scroll-margin-top: 5.5rem;
+}
+
+#follow-up-page h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sb-text);
+  margin: 1.75rem 0 0.5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+#follow-up-page p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--sb-text-muted);
+  margin: 0 0 1rem;
+}
+
+#follow-up-page p strong {
+  color: var(--sb-text);
+}
+
+/* Numbered steps */
+#follow-up-page .steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+#follow-up-page .steps__item {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+#follow-up-page .steps__number {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sb-yellow-soft);
+  color: var(--sb-yellow);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#follow-up-page .steps__title {
+  font-weight: 600;
+  color: var(--sb-text);
+  margin: 0 0 0.2rem;
+}
+
+#follow-up-page .steps__item p {
+  margin: 0;
+}
+
+/* Example message block */
+#follow-up-page .example {
+  background: var(--sb-surface);
+  border: 1px solid var(--sb-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin: 1.5rem 0;
+}
+
+#follow-up-page .example__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sb-text-muted);
+  margin: 0 0 0.5rem;
+}
+
+#follow-up-page .example__msg {
+  font-size: 0.95rem;
+  color: var(--sb-text);
+  background: var(--sb-yellow-soft);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  margin: 0 0 0.5rem;
+  display: inline-block;
+}
+
+#follow-up-page .example__note {
+  font-size: 0.85rem;
+  color: var(--sb-text-muted);
+  margin: 0;
+}
+
+/* Vague vs specific / two-path comparison */
+#follow-up-page .comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+#follow-up-page .comparison__col {
+  border: 1px solid var(--sb-border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+}
+
+#follow-up-page .comparison__col p {
+  margin: 0;
+}
+
+#follow-up-page .comparison__heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem !important;
+}
+
+#follow-up-page .comparison__heading--bad {
+  color: #f87171;
+}
+
+#follow-up-page .comparison__heading--good {
+  color: #4ade80;
+}
+
+@media (max-width: 640px) {
+  #follow-up-page .comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Callout */
+#follow-up-page .callout {
+  border-left: 3px solid var(--sb-yellow);
+  background: var(--sb-yellow-soft);
+  border-radius: 0 8px 8px 0;
+  padding: 0.85rem 1.1rem;
+  margin: 2rem 0 1rem;
+}
+
+#follow-up-page .callout__title {
+  font-weight: 700;
+  color: var(--sb-yellow-dark);
+  margin: 0 0 0.35rem !important;
+}
+
+#follow-up-page .callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Add more #follow-up-page styles above this line */
+
+/* END SECTION: #follow-up-page */
