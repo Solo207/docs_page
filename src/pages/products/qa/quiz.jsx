@@ -1,5 +1,5 @@
 import './qa.css'
-import { PageNav } from '../../../components/AddImage.jsx'
+import AddImage, { PageNav } from '../../../components/AddImage.jsx'
 
 function Quiz() {
   return (
@@ -13,7 +13,7 @@ function Quiz() {
 
       <div className="callout">
         <p className="callout__title">Before you start</p>
-        <p>
+        <p> 
           This assumes you're already familiar with the ask-and-confirm
           loop from Ask your first question — a quiz goes through the same
           course/topic mapping and the same yes-or-fix-it confirmation, on
@@ -83,6 +83,13 @@ function Quiz() {
         </p>
       </div>
 
+      <AddImage
+        src="/Screenshot_2026-09-05-09-44-50-182_com.whatsapp.w4b.jpg"
+        alt="Quiz flow"
+        caption="Quiz Flow"
+        height={200}
+      />
+
       <p>
         Difficulty only accepts Easy, Medium, or Hard — spelled out, not
         abbreviated. Time is always in minutes, capped at 150; if you'd
@@ -126,6 +133,13 @@ function Quiz() {
           block, or the quiz settings themselves.
         </p>
       </div>
+
+       <AddImage
+        src="/Screenshot_2026-09-05-09-44-57-224_com.whatsapp.w4b.jpg"
+        alt="Quiz flow"
+        caption="Quiz Flow"
+        height={200}
+      />
 
       <p>
         This is the point to actually read through the mapping rather than
@@ -198,6 +212,13 @@ function Quiz() {
           jumps straight to any question on the list.
         </p>
       </div>
+
+      <AddImage
+        src="/.trashed-1791189922-Screenshot_2026-09-05-09-45-17-259_com.android.chrome.jpg"
+        alt="Quiz Page"
+        caption="Quiz Page"
+        height={200}
+      />
 
       <p>
         If you set a timer when you started the quiz, it counts down at
